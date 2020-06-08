@@ -31,7 +31,7 @@ def run(ctx: protocol_api.ProtocolContext):
         for i, slot in enumerate(['5', '6', '2', '3'])
     ]
     dest_plate = ctx.load_labware(
-        'nest_96_deepwell_2ml', '4', '96-deepwell sample plate')
+        'nest_96_wellplate_2ml_deep', '4', '96-deepwell sample plate')
     lys_buff = ctx.load_labware(
         'opentrons_6_tuberack_falcon_50ml_conical', '7',
         '50ml tuberack for lysis buffer + PK (tube A1)').wells()[0]
