@@ -8,7 +8,7 @@ metadata = {
     'protocolName': 'Version 1 S9 Station A BP Purebase',
     'author': 'Nick <protocols@opentrons.com>',
     'source': 'Custom Protocol Request',
-    'apiLevel': '2.0'
+    'apiLevel': '2.3'
 }
 
 NUM_SAMPLES = 96
