@@ -41,7 +41,7 @@ def run(ctx: protocol_api.ProtocolContext):
     tipracks1000 = [ctx.load_labware('opentrons_96_filtertiprack_1000ul', slot,
                                      '1000µl filter tiprack')
                     for slot in ['8', '9', '11']]
-    tipracks20 = [ctx.load_labware('opentrons_96_filtertiprack_1000ul', '10',
+    tipracks20 = [ctx.load_labware('opentrons_96_filtertiprack_20ul', '10',
                                    '20µl filter tiprack')]
 
     # load pipette
