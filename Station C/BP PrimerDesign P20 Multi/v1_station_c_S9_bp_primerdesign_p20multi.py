@@ -30,7 +30,7 @@ def run(ctx: protocol_api.ProtocolContext):
     tips300 = [ctx.load_labware('opentrons_96_filtertiprack_200ul', '2')]
     tempdeck = ctx.load_module('Temperature Module Gen2', '4')
     pcr_plate = tempdeck.load_labware(
-        'opentrons_96_aluminumblock_nest_wellplate_100ul', 'PCR plate')
+        'opentrons_96_aluminumblock_biorad_wellplate_200ul', 'PCR plate')
     mm_strips = ctx.load_labware(
         'opentrons_96_aluminumblock_generic_pcr_strip_200ul', '7',
         'mastermix strips')
