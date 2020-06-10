@@ -35,13 +35,10 @@ def run(ctx: protocol_api.ProtocolContext):
     lys_buff = ctx.load_labware(
         'opentrons_6_tuberack_falcon_50ml_conical', '7',
         '50ml tuberack for lysis buffer + PK (tube A1)').wells()[0]
-    # lys_buff = ctx.load_labware(
-    #     'opentrons_24_aluminumblock_generic_2ml_screwcap', '7',
-    #     '50ml tuberack for lysis buffer + PK (tube A1)').wells()[0]
     tipracks1000 = [ctx.load_labware('opentrons_96_filtertiprack_1000ul', slot,
                                      '1000µl filter tiprack')
                     for slot in ['8', '9', '11']]
-    tipracks20 = [ctx.load_labware('opentrons_96_filtertiprack_1000ul', '10',
+    tipracks20 = [ctx.load_labware('opentrons_96_filtertiprack_20ul', '10',
                                    '20µl filter tiprack')]
 
     # load pipette
@@ -92,7 +89,7 @@ resuming.')
         pip.pick_up_tip(tip_log['tips'][pip][tip_log['count'][pip]])
         tip_log['count'][pip] += 1
 
-    heights = {lys_buff: 40}
+    heights = {lys_buff: 20}
     radius = (lys_buff.diameter)/2
     min_h = 5
 
@@ -116,7 +113,7 @@ resuming.')
     # transfer lysis buffer + proteinase K and mix
     for s, d in zip(sources, dests_single):
         pick_up(p1000)
-        p1000.transfer(SAMPLE_VOLUME, s.bottom(5), d.bottom(5), air_gap=100,
+        p1000.transfer(210, h_track(lys_buff, 210), d.bottom(5), air_gap=100,
                        mix_after=(10, 100), new_tip='never')
         p1000.air_gap(100)
         p1000.drop_tip()
