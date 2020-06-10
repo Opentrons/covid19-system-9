@@ -62,7 +62,7 @@ def run(ctx):
     m300 = ctx.load_instrument(
         'p300_multi_gen2', 'left', tip_racks=tips300)
 
-    magdeck = ctx.load_module('magdeck', '4')
+    magdeck = ctx.load_module('Magnetic Module Gen2', '4')
     magdeck.disengage()
     magheight = 13.7
     magplate = magdeck.load_labware('nest_96_wellplate_2ml_deep')
