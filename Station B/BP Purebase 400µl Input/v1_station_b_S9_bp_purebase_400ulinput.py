@@ -126,7 +126,7 @@ resuming.')
 
     switch = True
     drop_count = 0
-    drop_threshold = 120  # number of tips trash will accommodate before prompting user to empty
+    drop_threshold = 960  # number of tips trash will accommodate before prompting user to empty
 
     def drop(pip):
         nonlocal switch
@@ -266,7 +266,7 @@ for 2 minutes')
             m300.transfer(40, loc, e.bottom(5), air_gap=20, new_tip='never')
             m300.blow_out(e.top(-2))
             m300.air_gap(20)
-            m300.drop_tip()
+            drop(m300)
 
     bind(210, park=PARK)
     wash(500, wash1, 20, park=PARK)
@@ -277,4 +277,4 @@ for 2 minutes')
     ctx.delay(minutes=5, msg='Airdrying beads at room temperature for 5 \
 minutes.')
 
-    elute(40, park=PARK)
+    elute(ELUTION_VOL, park=PARK)
