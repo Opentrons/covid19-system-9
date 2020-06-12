@@ -19,7 +19,7 @@ TIP_TRACK = False
 def run(ctx: protocol_api.ProtocolContext):
 
     # load labware
-    tempdeck = ctx.load_module('Temperature Module Gen2', '1')
+    tempdeck = ctx.load_module('Temperature Module Gen2', '10')
     tempdeck.set_temperature(4)
     internal_control = tempdeck.load_labware(
         'opentrons_96_aluminumblock_generic_pcr_strip_200ul',
@@ -31,14 +31,14 @@ def run(ctx: protocol_api.ProtocolContext):
         for i, slot in enumerate(['2', '3', '5', '6'])
     ]
     dest_plate = ctx.load_labware(
-        'nest_96_wellplate_2ml_deep', '4', '96-deepwell sample plate')
+        'nest_96_wellplate_2ml_deep', '1', '96-deepwell sample plate')
     lys_buff = ctx.load_labware(
-        'opentrons_6_tuberack_falcon_50ml_conical', '7',
+        'opentrons_6_tuberack_falcon_50ml_conical', '4',
         '50ml tuberack for lysis buffer + PK (tube A1)').wells()[0]
     tipracks1000 = [ctx.load_labware('opentrons_96_filtertiprack_1000ul', slot,
                                      '1000µl filter tiprack')
                     for slot in ['8', '9', '11']]
-    tipracks20 = [ctx.load_labware('opentrons_96_filtertiprack_20ul', '10',
+    tipracks20 = [ctx.load_labware('opentrons_96_filtertiprack_20ul', '7',
                                    '20µl filter tiprack')]
 
     # load pipette
