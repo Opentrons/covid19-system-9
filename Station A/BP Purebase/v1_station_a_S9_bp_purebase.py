@@ -45,6 +45,9 @@ def run(ctx: protocol_api.ProtocolContext):
     m20 = ctx.load_instrument('p20_multi_gen2', 'left', tip_racks=tipracks20)
     p1000 = ctx.load_instrument(
         'p1000_single_gen2', 'right', tip_racks=tipracks1000)
+    p1000.flow_rate.aspirate = 250
+    p1000.flow_rate.dispense = 500
+    p1000.flow_rate.blow_out = 500
 
     # setup samples
     sources = [
