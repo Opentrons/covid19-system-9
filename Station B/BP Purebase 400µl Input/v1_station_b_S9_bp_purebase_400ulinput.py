@@ -12,7 +12,7 @@ metadata = {
 }
 
 NUM_SAMPLES = 94  # start with 8 samples, slowly increase to 48, then 94 (max is 94)
-SAMPLE_VOL = 400
+STARTING_VOL = 420
 ELUTION_VOL = 40
 TIP_TRACK = False
 PARK = False
@@ -200,7 +200,7 @@ resuming.')
         ctx.delay(minutes=2, msg='Incubating on MagDeck for 2 minutes.')
 
         # remove initial supernatant
-        remove_supernatant(vol+SAMPLE_VOL, park=park)
+        remove_supernatant(vol+STARTING_VOL, park=park)
 
     def wash(wash_vol, source, mix_reps, park=True):
         magdeck.disengage()
