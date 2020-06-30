@@ -13,6 +13,7 @@ metadata = {
 
 NUM_SAMPLES = 96
 SAMPLE_VOLUME = 200
+INTERNAL_CONTROL_VOLUME = 10
 TIP_TRACK = False
 
 
@@ -127,8 +128,9 @@ Return to slot 4 when complete.')
     # transfer internal control
     for d in dests_multi:
         pick_up(m20)
-        m20.transfer(10, internal_control, d.bottom(10), air_gap=5,
-                     new_tip='never')
+        
+        m20.transfer(INTERNAL_CONTROL_VOLUME, internal_control, d.bottom(10),
+                     air_gap=20-INTERNAL_CONTROL_VOLUME, new_tip='never')
         m20.air_gap(5)
         m20.drop_tip()
 
