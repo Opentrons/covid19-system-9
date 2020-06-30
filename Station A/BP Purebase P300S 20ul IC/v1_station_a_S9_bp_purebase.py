@@ -5,7 +5,7 @@ import math
 
 # metadata
 metadata = {
-    'protocolName': 'Version 1 S9 Station A BP Purebase',
+    'protocolName': 'Version 1 S9 Station A BP Purebase 20ul Internal Control',
     'author': 'Nick <protocols@opentrons.com>',
     'source': 'Custom Protocol Request',
     'apiLevel': '2.3'
@@ -22,9 +22,12 @@ def run(ctx: protocol_api.ProtocolContext):
     # load labware
     tempdeck = ctx.load_module('Temperature Module Gen2', '10')
     tempdeck.set_temperature(4)
+    num_cols = math.ceil(NUM_SAMPLES/8)
+    num_ic_strips = math.ceil(INTERNAL_CONTROL_VOLUME*num_cols*1.1/200)
+    cols_per_strip = math.ceil(num_cols/num_ic_strips)
     internal_control = tempdeck.load_labware(
         'opentrons_96_aluminumblock_generic_pcr_strip_200ul',
-        'chilled tubeblock for internal control (strip 1)').wells()[0]
+        'chilled tubeblock for internal control (strip 1)').rows()[0][:num_ic_strips]
     source_racks = [
         ctx.load_labware(
             'opentrons_24_tuberack_eppendorf_2ml_safelock_snapcap', slot,
@@ -126,11 +129,12 @@ resuming.')
 Return to slot 4 when complete.')
 
     # transfer internal control
-    for d in dests_multi:
+    for i, d in enumerate(dests_multi):
         pick_up(m20)
-
-        m20.transfer(INTERNAL_CONTROL_VOLUME, internal_control, d.bottom(10),
-                     air_gap=20-INTERNAL_CONTROL_VOLUME, new_tip='never')
+        strip_ind = i//cols_per_strip
+        m20.transfer(INTERNAL_CONTROL_VOLUME, internal_control[strip_ind],
+                     d.bottom(10), air_gap=20-INTERNAL_CONTROL_VOLUME,
+                     new_tip='never')
         m20.air_gap(5)
         m20.drop_tip()
 
