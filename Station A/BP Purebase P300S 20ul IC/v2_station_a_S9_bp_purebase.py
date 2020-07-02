@@ -5,7 +5,7 @@ import math
 
 # metadata
 metadata = {
-    'protocolName': 'Version 1 S9 Station A BP Purebase 20ul Internal Control',
+    'protocolName': 'Version 2 S9 Station A BP Purebase 20ul Internal Control',
     'author': 'Nick <protocols@opentrons.com>',
     'source': 'Custom Protocol Request',
     'apiLevel': '2.3'
@@ -49,7 +49,7 @@ def run(ctx: protocol_api.ProtocolContext):
     m20 = ctx.load_instrument('p20_multi_gen2', 'left', tip_racks=tipracks20)
     p300 = ctx.load_instrument(
         'p300_single_gen2', 'right', tip_racks=tipracks300)
-    p300.flow_rate.aspirate = 150
+    p300.flow_rate.aspirate = 50
     p300.flow_rate.dispense = 300
     p300.flow_rate.blow_out = 300
 
