@@ -25,22 +25,22 @@ def run(ctx: protocol_api.ProtocolContext):
         'chilled elution plate on block from Station B')
     tips20 = [
         ctx.load_labware('opentrons_96_filtertiprack_20ul', slot)
-        for slot in ['3', '6', '8', '9', '11']
+        for slot in ['3', '6', '7', '8', '9']
     ]
     tips20_no_a = [
-        ctx.load_labware('opentrons_96_filtertiprack_20ul', '10',
+        ctx.load_labware('opentrons_96_filtertiprack_20ul', '11',
         '20µl tiprack - no tips in row A')
     ]
-    tips300 = [ctx.load_labware('opentrons_96_filtertiprack_200ul', '2')]
+    tips300 = [ctx.load_labware('opentrons_96_filtertiprack_200ul', '10')]
     tempdeck = ctx.load_module('Temperature Module Gen2', '4')
     pcr_plate = tempdeck.load_labware(
         'opentrons_96_aluminumblock_biorad_wellplate_200ul', 'PCR plate')
     mm_strips = ctx.load_labware(
-        'opentrons_96_aluminumblock_generic_pcr_strip_200ul', '7',
+        'opentrons_96_aluminumblock_generic_pcr_strip_200ul', '5',
         'mastermix strips')
     tempdeck.set_temperature(4)
     tube_block = ctx.load_labware(
-        'opentrons_24_aluminumblock_nest_1.5ml_snapcap', '5',
+        'opentrons_24_aluminumblock_nest_1.5ml_snapcap', '2',
         '2ml screw tube aluminum block for mastermix + controls')
 
     # pipette
@@ -174,8 +174,7 @@ before resuming.')
         m20.drop_tip()
 
     # track final used tip
-    # if TIP_TRACK and not ctx.is_simulating():
-    if TIP_TRACK:
+    if TIP_TRACK and not ctx.is_simulating():
         if not os.path.isdir(folder_path):
             os.mkdir(folder_path)
         data = {
